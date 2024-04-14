@@ -7,45 +7,24 @@ with open('schema.sql') as f:
 
 cur = connection.cursor()
 
-sql = "INSERT INTO user (username, password, firstname, lastname, email, gender, role, phone,  dob, height_cm, weight_kg)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-cur.execute(sql, ('admin', 'admin', 'admin', 'admin', 'admin@gmail.com', 'female', 'admin', '8888888888', '2022-2-22', 170, 55))
+# Replace the values for each INSERT INTO statement as desired
+cur.execute("INSERT INTO user (username, password, firstname, lastname, email, gender, role, phone, dob, height_cm, weight_kg) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            ('newadmin', 'newpass', 'NewAdminFirstName', 'NewAdminLastName', 'newadmin@example.com', 'male', 'admin', '9999999999', '1990-1-1', 180, 70))
 
-sql = "INSERT INTO user (username, password, firstname, lastname, email, role, phone, dob, height_cm, weight_kg)VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?)"
-cur.execute(sql, ('jack', '123', 'Tom', 'Smith', 'jack@gmail.com', 'doctor',  '4444444444','2000-2-22', 170, 55))
+cur.execute("INSERT INTO user (username, password, firstname, lastname, email, role, phone, dob, height_cm, weight_kg) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            ('newuser1', 'pass1', 'FirstName1', 'LastName1', 'newuser1@example.com', 'doctor', '7777777777', '1991-1-1', 165, 60))
 
-sql = "INSERT INTO user (username, password, firstname, lastname, email, role, phone,  dob, height_cm, weight_kg)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-cur.execute(sql, ('jerry', '123', 'Jerry', 'Disney', 'jerry@gmail.com', 'nurse', '3333333333','2000-2-22', 170, 55))
+cur.execute("INSERT INTO user (username, password, firstname, lastname, email, role, phone, dob, height_cm, weight_kg) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            ('newuser2', 'pass2', 'FirstName2', 'LastName2', 'newuser2@example.com', 'nurse', '6666666666', '1992-2-2', 160, 50))
 
-sql = "INSERT INTO user (username, password, firstname, lastname, email, gender, role, phone,  dob, height_cm, weight_kg)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-cur.execute(sql, ('rose', '123', 'Rose', 'Titanic','rose@gmail.com', 'female', 'patient', '6666666666','2000-2-22', 170, 55))
+cur.execute("INSERT INTO device (data_type, measurement, patient_name, doctor_name, nurse_name) VALUES (?, ?, ?, ?, ?)",
+            ('blood_pressure', '120/80', 'newuser2', 'newuser1', 'newuser2'))
 
-sql = "INSERT INTO user (username, password, firstname, lastname, email, gender, role,  phone,  dob)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-cur.execute(sql, ('Jassica', '123', 'Jassica', 'Atlantic', 'jassica@gmail.com', 'female', 'family', '1234567890','2000-2-22'))
+cur.execute("INSERT INTO chat (sender, recipient, type, content) VALUES (?, ?, ?, ?)",
+            ('newuser1', 'newuser2', 'message', 'Hello, how can I help you?'))
 
-sql = "INSERT INTO user (username, password, firstname, lastname, email, gender, role, phone,  dob)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-cur.execute(sql, ('Mark', '123', 'Mark', 'Zuck', 'mark@gmail.com', 'male', 'developer', '5555555555', '2000-2-22'))
-
-sql_devices = "INSERT INTO device (data_type, measurement, patient_name, doctor_name, nurse_name)" \
-              "VALUES (?, ?, ?, ?, ?)"
-cur.execute(sql_devices, ('temperature', '97', 'rose', 'jack', '3'))
-
-sql = "INSERT INTO chat (sender, recipient, type, content)VALUES (?, ?, ?, ?)"
-cur.execute(sql, ('rose', 'jack', 'message', 'Hello, Dr Jack!'))
-
-sql = "INSERT INTO chat (sender, recipient, type, content)VALUES (?, ?, ?, ?)"
-cur.execute(sql, ('jack', 'rose', 'message', 'How are you, today?'))
-
-sql = "INSERT INTO chat (sender, recipient, type, content)VALUES (?, ?, ?, ?)"
-cur.execute(sql, ('rose', 'jack',  'message', 'My stomach is not very well.'))
-
-sql = "INSERT INTO chat (sender, recipient, type, content)VALUES (?, ?, ?, ?)"
-cur.execute(sql, ('rose', 'jack',  'message', 'May I make a appointment with you next Wed?'))
-
-sql = "INSERT INTO chat (sender, recipient, type, content)VALUES (?, ?, ?, ?)"
-cur.execute(sql, ('jack', 'rose', 'message', 'Sure, I am available in the afternoon'))
-
-sql = 'INSERT INTO appointment (doctor_name, patient_name, appointment_date, start, finish, symptom) values (?, ?, ?, ?, ?, ?)'
-cur.execute(sql, ('Jack', 'Rose', '2022-5-1', '15:00:00', '16:00:00', 'cough'))
+cur.execute("INSERT INTO appointment (doctor_name, patient_name, appointment_date, start, finish, symptom) values (?, ?, ?, ?, ?, ?)",
+            ('DrNewUser1', 'NewUser2', '2023-10-10', '10:00:00', '11:00:00', 'general_checkup'))
 
 connection.commit()
 connection.close()
